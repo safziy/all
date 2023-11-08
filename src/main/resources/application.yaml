@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: safziy-mp
+  profiles:
+    active: dev
+    include: mp

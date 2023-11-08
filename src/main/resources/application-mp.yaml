@@ -1,0 +1,17 @@
+wx:
+  mp:
+    defaultAppId: wx7e4eb5e279cb13da
+    configs:
+      -
+        appId: wx7e4eb5e279cb13da
+        secret: ff8adb6cb6ff1bb87be033950c60f3da
+        token: nT1DN6dRTAQUTFHP
+        aesKey: Di8THCJmDTPBc29CCfrXL52QtsFkiz6WIHsSizgUoQq
+  ma:
+    defaultAppId: wx99fde8bdcb8b0b0a
+    configs:
+      - appId: wx99fde8bdcb8b0b0a
+        secret: 31c71aecddc6ce89a3431d0677a2f1ac
+        token: nT1DN6dRTAQUTFHP
+        aesKey: Di8THCJmDTPBc29CCfrXL52QtsFkiz6WIHsSizgUoQq
+        msgDataFormat: JSON
