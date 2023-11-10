@@ -6,7 +6,7 @@ import cn.binarywang.wx.miniapp.api.impl.WxMaServiceImpl;
 import cn.binarywang.wx.miniapp.config.impl.WxMaDefaultConfigImpl;
 import cn.binarywang.wx.miniapp.message.WxMaMessageRouter;
 import com.safziy.configuration.config.WxMaProperties;
-import com.safziy.handler.WxMaLogHandler;
+import com.safziy.wx.handler.WxMaLogHandler;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

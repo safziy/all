@@ -1,7 +1,7 @@
 package com.safziy.configuration;
 
-import com.safziy.interceptor.LogInterceptor;
-import com.safziy.interceptor.LoginInterceptor;
+import com.safziy.controller.base.LogInterceptor;
+import com.safziy.controller.base.LoginInterceptor;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

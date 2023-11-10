@@ -1,4 +1,4 @@
-package com.safziy.interceptor;
+package com.safziy.controller.base;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

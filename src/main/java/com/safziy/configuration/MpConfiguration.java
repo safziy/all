@@ -2,10 +2,10 @@ package com.safziy.configuration;
 
 
 import com.safziy.configuration.config.WxMpProperties;
-import com.safziy.handler.WxMpLogHandler;
-import com.safziy.handler.WxMpSubscribeHandler;
-import com.safziy.handler.WxMpUnsubscribeHandler;
-import com.safziy.handler.WxMpViewHandler;
+import com.safziy.wx.handler.WxMpLogHandler;
+import com.safziy.wx.handler.WxMpSubscribeHandler;
+import com.safziy.wx.handler.WxMpUnsubscribeHandler;
+import com.safziy.wx.handler.WxMpViewHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;

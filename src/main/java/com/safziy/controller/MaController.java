@@ -8,6 +8,11 @@ import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
 import cn.binarywang.wx.miniapp.message.WxMaMessageRouter;
 import cn.binarywang.wx.miniapp.util.WxMaConfigHolder;
+import com.safziy.controller.base.WebSupport;
+import com.safziy.controller.response.WxMaLogin;
+import com.safziy.entity.WxUser;
+import com.safziy.controller.base.Resp;
+import com.safziy.service.LoginService;
 import com.safziy.utils.JsonUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +25,13 @@ import java.util.Objects;
 @Slf4j
 @RestController
 @RequestMapping("/wx/ma")
-public class MaController {
+public class MaController implements WebSupport {
     @Resource
     private WxMaService wxMaService;
     @Resource
     private WxMaMessageRouter wxMaMessageRouter;
+    @Resource
+    private LoginService loginService;
 
     @GetMapping("portal/{appId}")
     public String wxMaVerify(@PathVariable String appId, String signature, String timestamp, String nonce,
@@ -105,9 +112,9 @@ public class MaController {
      * 登陆接口
      */
     @GetMapping("/login/{appId}")
-    public String login(@PathVariable String appId, String code) {
+    public Resp<WxMaLogin> login(@PathVariable String appId, String code) {
         if (StringUtils.isBlank(code)) {
-            return "empty code";
+            throw new RuntimeException();
         }
         if (!wxMaService.switchover(appId)) {
             throw new IllegalArgumentException(String.format("未找到对应appid=[%s]的配置，请核实！", appId));
@@ -116,11 +123,14 @@ public class MaController {
             WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(code);
             log.info(session.getSessionKey());
             log.info(session.getOpenid());
-            //TODO 可以增加自己的逻辑，关联业务相关数据
-            return JsonUtil.toJson(session);
+            WxUser wxUser = loginService.wxMaLogin(session.getOpenid());
+            WxMaLogin loginResult = new WxMaLogin();
+            loginResult.setUserId(wxUser.getUserId());
+            loginResult.setOpenId(wxUser.getOpenId());
+            return success(loginResult);
         } catch (WxErrorException e) {
             log.error(e.getMessage(), e);
-            return e.toString();
+            return error("error", "error");
         } finally {
             WxMaConfigHolder.remove();//清理ThreadLocal
         }

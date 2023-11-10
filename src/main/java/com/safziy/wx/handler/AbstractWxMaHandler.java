@@ -1,4 +1,4 @@
-package com.safziy.handler;
+package com.safziy.wx.handler;
 
 import cn.binarywang.wx.miniapp.message.WxMaMessageHandler;
 import cn.binarywang.wx.miniapp.message.WxMaXmlOutMessage;

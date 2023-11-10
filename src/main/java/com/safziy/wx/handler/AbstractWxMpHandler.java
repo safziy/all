@@ -1,4 +1,4 @@
-package com.safziy.handler;
+package com.safziy.wx.handler;
 
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
