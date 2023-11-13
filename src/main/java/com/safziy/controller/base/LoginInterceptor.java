@@ -21,9 +21,11 @@ public class LoginInterceptor implements HandlerInterceptor, WebSupport {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute(WebConstants.LoginUserId);
-        if (userId != 0) {
+        if (userId != null && userId != 0) {
             return true;
         }
+//        session.setAttribute(WebConstants.LoginUserId, 1);
+//        return true;
         Resp<Object> result = error(ErrCode.LoginInvalid, "");
         response.getWriter().write(JsonUtil.toJson(result));
         response.getWriter().flush();

@@ -1,7 +1,6 @@
 package com.safziy.generate;
 
 import com.mybatisflex.codegen.Generator;
-import com.mybatisflex.codegen.config.ColumnConfig;
 import com.mybatisflex.codegen.config.GlobalConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -35,7 +34,7 @@ public class MybatisFlexCodegen {
 
         //设置表前缀和只生成哪些表
         globalConfig.setTablePrefix("t_");
-        globalConfig.setGenerateTable("t_user", "t_wx_user");
+        globalConfig.setGenerateTable("t_user_sudoku", "t_user_sudoku_history");
 
         //设置生成 entity 并启用 Lombok
         globalConfig.setEntityGenerateEnable(true);
@@ -43,9 +42,9 @@ public class MybatisFlexCodegen {
         //设置生成 mapper
         globalConfig.enableMapper();
 
-        globalConfig.enableService();
-        globalConfig.enableServiceImpl();
-        globalConfig.enableController();
+//        globalConfig.enableService();
+//        globalConfig.enableServiceImpl();
+//        globalConfig.enableController();
         globalConfig.enableMapperXml();
         globalConfig.enablePackageInfo();
 
