@@ -1,0 +1,1 @@
+INSERT INTO `t_user`(`id`, `name`) VALUES (1,'default');
