@@ -21,6 +21,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptor).order(1)
                 .addPathPatterns("/**")  //设置拦截器拦截的请求路径 /* 表示拦截一级路径 /**表示拦截任意级路径
                 .excludePathPatterns("/wx/ma/login/*") //设置不拦截的请求路径
-                .excludePathPatterns("/wx/mp/login/*");  //设置不拦截的请求路径
+                .excludePathPatterns("/wx/mp/login/*")  //设置不拦截的请求路径
+                .excludePathPatterns("/user/mockLogin");  //设置不拦截的请求路径
     }
 }
