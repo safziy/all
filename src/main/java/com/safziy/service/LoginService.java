@@ -1,6 +1,6 @@
 package com.safziy.service;
 
-import com.safziy.entity.WxUser;
+import com.safziy.controller.response.WxMaLogin;
 
 public interface LoginService {
     /**
@@ -8,5 +8,5 @@ public interface LoginService {
      *
      * @param openId 微信小程序openId
      */
-    WxUser wxMaLogin(String openId);
+    WxMaLogin wxMaLogin(String openId);
 }

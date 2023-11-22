@@ -1,11 +1,15 @@
 package com.safziy.controller.base;
 
 
+import com.auth0.jwt.interfaces.Claim;
 import com.safziy.constants.WebConstants;
+import com.safziy.exception.LoginException;
+import com.safziy.utils.JWTUtil;
 import com.safziy.utils.WebUtil;
-import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.util.Strings;
 
 import java.time.Instant;
+import java.util.Map;
 
 public interface WebSupport {
 
@@ -35,8 +39,16 @@ public interface WebSupport {
     }
 
     default Integer getLoginUser() {
-        HttpSession session = WebUtil.getSession();
-        return (Integer) session.getAttribute(WebConstants.LoginUserId);
+        String token = WebUtil.getHeader(WebConstants.Token);
+        if (Strings.isBlank(token)) {
+            throw  new LoginException("无效的登录");
+        }
+        try {
+            Map<String, Claim> tokenInfo = JWTUtil.getTokenInfo(token);
+            return tokenInfo.get(WebConstants.LoginUserId).asInt();
+        } catch (Exception e) {
+            throw  new LoginException("无效的登录");
+        }
     }
 
 }

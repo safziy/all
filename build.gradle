@@ -40,6 +40,8 @@ dependencies {
 	implementation 'com.github.binarywang:weixin-java-miniapp:4.5.0'
 	implementation 'com.mybatis-flex:mybatis-flex-spring-boot-starter:1.7.3'
 	implementation 'com.mybatis-flex:mybatis-flex-codegen:1.7.3'
+	// https://mvnrepository.com/artifact/com.auth0/java-jwt
+	implementation group: 'com.auth0', name: 'java-jwt', version: '4.4.0'
 
 	compileOnly 'org.projectlombok:lombok'
 

@@ -12,7 +12,6 @@ import com.safziy.controller.base.Resp;
 import com.safziy.controller.base.WebSupport;
 import com.safziy.controller.request.MaLoginReq;
 import com.safziy.controller.response.WxMaLogin;
-import com.safziy.entity.WxUser;
 import com.safziy.service.LoginService;
 import com.safziy.utils.JsonUtil;
 import jakarta.annotation.Resource;
@@ -124,10 +123,7 @@ public class MaController implements WebSupport {
             WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(req.getCode());
             log.info(session.getSessionKey());
             log.info(session.getOpenid());
-            WxUser wxUser = loginService.wxMaLogin(session.getOpenid());
-            WxMaLogin loginResult = new WxMaLogin();
-            loginResult.setUserId(wxUser.getUserId());
-            loginResult.setOpenId(wxUser.getOpenId());
+            WxMaLogin loginResult = loginService.wxMaLogin(session.getOpenid());
             return success(loginResult);
         } catch (WxErrorException e) {
             log.error(e.getMessage(), e);

@@ -1,15 +1,18 @@
 package com.safziy.service.impl;
 
 import com.safziy.constants.WebConstants;
+import com.safziy.controller.response.WxMaLogin;
 import com.safziy.entity.User;
 import com.safziy.entity.WxUser;
 import com.safziy.mapper.UserMapper;
 import com.safziy.mapper.WxUserMapper;
 import com.safziy.service.LoginService;
-import com.safziy.utils.WebUtil;
+import com.safziy.utils.JWTUtil;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -20,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
     private UserMapper userMapper;
 
     @Override
-    public WxUser wxMaLogin(String openId) {
+    public WxMaLogin wxMaLogin(String openId) {
         WxUser wxUser = wxUserMapper.findByOpenId(openId);
         if (wxUser == null) {
             // 新用户
@@ -37,8 +40,11 @@ public class LoginServiceImpl implements LoginService {
                 throw new RuntimeException();
             }
         }
-        HttpSession session = WebUtil.getSession();
-        session.setAttribute(WebConstants.LoginUserId, wxUser.getUserId());
-        return wxUser;
+        Map<String, String> loginInfo = new HashMap<>();
+        loginInfo.put(WebConstants.LoginUserId, wxUser.getOpenId());
+        String token = JWTUtil.getToken(loginInfo);
+        WxMaLogin loginResult = new WxMaLogin();
+        loginResult.setToken(token);
+        return loginResult;
     }
 }

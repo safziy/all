@@ -5,11 +5,7 @@ import lombok.Data;
 @Data
 public class WxMaLogin {
     /**
-     * userId 用户Id
+     * token
      */
-    private Integer userId;
-    /**
-     * openId 微信openId
-     */
-    private String openId;
+    private String token;
 }

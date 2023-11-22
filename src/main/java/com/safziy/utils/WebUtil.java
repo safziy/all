@@ -19,4 +19,8 @@ public class WebUtil {
         return getRequest().getSession();
     }
 
+    public static String getHeader(String headerName) {
+        return getRequest().getHeader(headerName);
+    }
+
 }
