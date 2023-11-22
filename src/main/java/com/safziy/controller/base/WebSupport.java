@@ -45,7 +45,7 @@ public interface WebSupport {
         }
         try {
             Map<String, Claim> tokenInfo = JWTUtil.getTokenInfo(token);
-            return tokenInfo.get(WebConstants.LoginUserId).asInt();
+            return Integer.valueOf(tokenInfo.get(WebConstants.LoginUserId).asString());
         } catch (Exception e) {
             throw  new LoginException("无效的登录");
         }
