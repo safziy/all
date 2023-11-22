@@ -8,10 +8,11 @@ import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import cn.binarywang.wx.miniapp.constant.WxMaConstants;
 import cn.binarywang.wx.miniapp.message.WxMaMessageRouter;
 import cn.binarywang.wx.miniapp.util.WxMaConfigHolder;
+import com.safziy.controller.base.Resp;
 import com.safziy.controller.base.WebSupport;
+import com.safziy.controller.request.MaLoginReq;
 import com.safziy.controller.response.WxMaLogin;
 import com.safziy.entity.WxUser;
-import com.safziy.controller.base.Resp;
 import com.safziy.service.LoginService;
 import com.safziy.utils.JsonUtil;
 import jakarta.annotation.Resource;
@@ -112,15 +113,15 @@ public class MaController implements WebSupport {
      * 登陆接口
      */
     @PostMapping("/login/{appId}")
-    public Resp<WxMaLogin> login(@PathVariable String appId, String code) {
-        if (StringUtils.isBlank(code)) {
+    public Resp<WxMaLogin> login(@PathVariable String appId, @RequestBody MaLoginReq req) {
+        if (StringUtils.isBlank(req.getCode())) {
             throw new RuntimeException();
         }
         if (!wxMaService.switchover(appId)) {
             throw new IllegalArgumentException(String.format("未找到对应appid=[%s]的配置，请核实！", appId));
         }
         try {
-            WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(code);
+            WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(req.getCode());
             log.info(session.getSessionKey());
             log.info(session.getOpenid());
             WxUser wxUser = loginService.wxMaLogin(session.getOpenid());
