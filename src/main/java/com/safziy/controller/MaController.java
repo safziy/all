@@ -111,7 +111,7 @@ public class MaController implements WebSupport {
     /**
      * 登陆接口
      */
-    @GetMapping("/login/{appId}")
+    @PostMapping("/login/{appId}")
     public Resp<WxMaLogin> login(@PathVariable String appId, String code) {
         if (StringUtils.isBlank(code)) {
             throw new RuntimeException();
