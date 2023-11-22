@@ -41,7 +41,7 @@ public class LoginServiceImpl implements LoginService {
             }
         }
         Map<String, String> loginInfo = new HashMap<>();
-        loginInfo.put(WebConstants.LoginUserId, wxUser.getOpenId());
+        loginInfo.put(WebConstants.LoginUserId, String.valueOf(wxUser.getUserId()));
         String token = JWTUtil.getToken(loginInfo);
         WxMaLogin loginResult = new WxMaLogin();
         loginResult.setToken(token);
