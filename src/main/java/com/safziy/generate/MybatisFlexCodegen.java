@@ -34,7 +34,7 @@ public class MybatisFlexCodegen {
 
         //设置表前缀和只生成哪些表
         globalConfig.setTablePrefix("t_");
-        globalConfig.setGenerateTable("t_user_sudoku", "t_user_sudoku_history");
+        globalConfig.setGenerateTable("t_sudoku_data", "t_user_sudoku", "t_user_sudoku_history");
 
         //设置生成 entity 并启用 Lombok
         globalConfig.setEntityGenerateEnable(true);
@@ -45,8 +45,8 @@ public class MybatisFlexCodegen {
 //        globalConfig.enableService();
 //        globalConfig.enableServiceImpl();
 //        globalConfig.enableController();
-        globalConfig.enableMapperXml();
-        globalConfig.enablePackageInfo();
+//        globalConfig.enableMapperXml();
+//        globalConfig.enablePackageInfo();
 
         //可以单独配置某个列
 //        ColumnConfig columnConfig = new ColumnConfig();

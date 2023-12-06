@@ -5,6 +5,10 @@ import lombok.Data;
 @Data
 public class FinishSudokuReq {
     /**
+     * 数独规格
+     */
+    private String size;
+    /**
      * 难度
      */
     private int difficulty;
