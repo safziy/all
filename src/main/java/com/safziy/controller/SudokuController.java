@@ -22,7 +22,7 @@ public class SudokuController implements WebSupport {
      * 获取数独关卡数据
      */
     @GetMapping("sudokuData")
-    public Resp<SudokuDataResp> getSudokuData(@RequestBody SudokuDataReq req) {
+    public Resp<SudokuDataResp> getSudokuData(SudokuDataReq req) {
         SudokuDataResp sudokuData = sudokuService.getSudokuData(req);
         return success(sudokuData);
     }
@@ -31,7 +31,7 @@ public class SudokuController implements WebSupport {
      * 获取用户数独关卡进度数据
      */
     @GetMapping("userSudokuData")
-    public Resp<UserSudokuResp> getUserSudokuData(@RequestBody UserSudokuDataReq req) {
+    public Resp<UserSudokuResp> getUserSudokuData(UserSudokuDataReq req) {
         UserSudokuResp userData = sudokuService.getUserSudokuData(getLoginUser(), req);
         return success(userData);
     }
