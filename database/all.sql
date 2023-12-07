@@ -43,6 +43,8 @@ CREATE TABLE `t_sudoku_data`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='数独数据表';
 
+
+
 CREATE TABLE `t_user_sudoku`
 (
     `id`         int(11)    NOT NULL AUTO_INCREMENT,
@@ -56,6 +58,12 @@ CREATE TABLE `t_user_sudoku`
     UNIQUE KEY `key_user_size_difficulty` (`size`, `user_id`, `difficulty`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='用户数独表';
+
+
+ALTER TABLE `t_user_sudoku`
+    ADD COLUMN `size`       varchar(8) NOT NULL COMMENT '数独size' AFTER `user_id`;
+ALTER TABLE `t_user_sudoku_history`
+    ADD COLUMN `size`       varchar(8) NOT NULL COMMENT '数独size' AFTER `user_id`;
 
 CREATE TABLE `t_user_sudoku_history`
 (
